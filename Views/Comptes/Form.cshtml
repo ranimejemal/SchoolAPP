@@ -1,0 +1,57 @@
+@model CompteFormViewModel
+@{
+    var creation = string.IsNullOrWhiteSpace(Model.Id);
+    ViewData["Title"] = creation ? "Créer un compte" : "Modifier un compte";
+}
+
+<section class="page-header page-header-inline">
+    <div><h1>@ViewData["Title"]</h1></div>
+    <a asp-action="Index" class="btn btn-outline-dark">Retour</a>
+</section>
+
+<div class="panel-card form-card">
+    <form asp-action="@(creation ? "Create" : "Edit")" asp-route-id="@Model.Id" method="post" class="row g-3">
+        <input asp-for="Id" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-6">
+            <label asp-for="Email" class="form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="col-md-6">
+            <label asp-for="DisplayName" class="form-label"></label>
+            <input asp-for="DisplayName" class="form-control" />
+            <span asp-validation-for="DisplayName" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Role" class="form-label"></label>
+            <select asp-for="Role" class="form-select" id="roleSelect">
+                <option value="Admin">Admin</option>
+                <option value="User">User</option>
+            </select>
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">@(creation ? "Mot de passe" : "Nouveau mot de passe")</label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="col-md-4" id="studentLinkBlock">
+            <label asp-for="EtudiantId" class="form-label"></label>
+            <select asp-for="EtudiantId" asp-items="Model.Etudiants" class="form-select">
+                <option value="">Aucun</option>
+            </select>
+            <span asp-validation-for="EtudiantId" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        window.toggleStudentLink?.();
+    </script>
+}

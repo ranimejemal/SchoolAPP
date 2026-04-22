@@ -1,0 +1,45 @@
+@model IEnumerable<Referentiel>
+@{
+    ViewData["Title"] = "Référentiels";
+}
+
+<section class="page-header page-header-inline">
+    <div><h1>Référentiels</h1></div>
+    <a asp-action="Create" class="btn btn-primary">Nouveau référentiel</a>
+</section>
+
+<div class="panel-card">
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Libellé</th>
+                    <th>Niveau</th>
+                    <th>Étudiants</th>
+                    <th>Professeurs</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Code</td>
+                        <td>@item.Libelle</td>
+                        <td>@item.Niveau</td>
+                        <td>@item.Etudiants.Count</td>
+                        <td>@item.Professeurs.Count</td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

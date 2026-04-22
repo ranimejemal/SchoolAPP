@@ -1,0 +1,75 @@
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<section class="page-header">
+    <div>
+        <span class="eyebrow">Administration</span>
+        <h1>Statistiques de l’application</h1>
+    </div>
+</section>
+
+<div class="row g-4 mb-4">
+    <div class="col-md-6 col-xl-3"><div class="stat-card"><span>Étudiants</span><strong>@Model.EtudiantsCount</strong></div></div>
+    <div class="col-md-6 col-xl-3"><div class="stat-card"><span>Professeurs</span><strong>@Model.ProfesseursCount</strong></div></div>
+    <div class="col-md-6 col-xl-3"><div class="stat-card"><span>Référentiels</span><strong>@Model.ReferentielsCount</strong></div></div>
+    <div class="col-md-6 col-xl-3"><div class="stat-card"><span>Absences</span><strong>@Model.AbsencesCount</strong></div></div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="panel-card h-100">
+            <h2 class="h4">Absences par référentiel</h2>
+            <div class="mt-4 d-grid gap-3">
+                @foreach (var item in Model.AbsencesByReferentiel)
+                {
+                    <div>
+                        <div class="d-flex justify-content-between">
+                            <span>@item.Label</span>
+                            <strong>@item.Value</strong>
+                        </div>
+                        <div class="progress mt-2" role="progressbar">
+                            <div class="progress-bar" style="width:@(Model.AbsencesCount == 0 ? 0 : (item.Value * 100 / Model.AbsencesCount))%"></div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="text-muted mt-4">Taux d’absences justifiées: <strong>@Model.JustifiedRate %</strong></div>
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="panel-card h-100">
+            <h2 class="h4">Absences récentes</h2>
+            <div class="table-responsive mt-3">
+                <table class="table align-middle">
+                    <thead>
+                        <tr>
+                            <th>Étudiant</th>
+                            <th>Référentiel</th>
+                            <th>Date</th>
+                            <th>Motif</th>
+                            <th>État</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.RecentAbsences)
+                        {
+                            <tr>
+                                <td>@item.Etudiant</td>
+                                <td>@item.Referentiel</td>
+                                <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@item.Libelle</td>
+                                <td>
+                                    <span class="badge @(item.Justifiee ? "text-bg-success" : "text-bg-warning")">
+                                        @(item.Justifiee ? "Justifiée" : "Non justifiée")
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

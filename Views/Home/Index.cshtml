@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Accueil";
+}
+
+<section class="hero-panel mb-4">
+    <div class="row g-4 align-items-center">
+        <div class="col-lg-7">
+            <span class="eyebrow">Mini projet ASP.NET Core</span>
+            <h1 class="display-5 fw-semibold mt-3">Gestion d’école avec identité, CRUD, statistiques et espace étudiant</h1>
+            <p class="lead text-muted mt-3">
+                Application web reconstruite autour des besoins du sujet:
+                authentification, rôles <strong>Admin/User</strong>, gestion complète des tables,
+                consultation des absences et microservices simples via API JSON.
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <a asp-controller="Auth" asp-action="Login" class="btn btn-primary btn-lg">Se connecter</a>
+                <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-dark btn-lg">Voir le dashboard</a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="glass-card">
+                <h2 class="h4">Comptes de démonstration</h2>
+                <div class="credential-block mt-3">
+                    <strong>Admin</strong>
+                    <div><code>admin@schoolapp.local</code></div>
+                    <div><code>Admin123</code></div>
+                </div>
+                <div class="credential-block mt-3">
+                    <strong>User</strong>
+                    <div><code>sarra@schoolapp.local</code></div>
+                    <div><code>User123</code></div>
+                </div>
+                <div class="credential-block mt-3">
+                    <strong>User</strong>
+                    <div><code>omar@schoolapp.local</code></div>
+                    <div><code>User123</code></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row g-4">
+    <div class="col-md-6 col-xl-3">
+        <div class="feature-card">
+            <h3>Authentification</h3>
+            <p>Connexion sécurisée avec ASP.NET Core Identity et rôles administrateur / utilisateur.</p>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="feature-card">
+            <h3>CRUD complet</h3>
+            <p>Gestion des comptes, étudiants, professeurs, référentiels et absences.</p>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="feature-card">
+            <h3>Statistiques</h3>
+            <p>Vue d’ensemble de l’application avec indicateurs et absences récentes.</p>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="feature-card">
+            <h3>Microservices simples</h3>
+            <p>Endpoints JSON pour consulter les statistiques et les absences de l’utilisateur connecté.</p>
+        </div>
+    </div>
+</section>

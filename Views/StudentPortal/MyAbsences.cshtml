@@ -1,0 +1,65 @@
+@model StudentAbsencesViewModel
+@{
+    ViewData["Title"] = "Mes absences";
+}
+
+<section class="page-header">
+    <div>
+        <span class="eyebrow">Espace étudiant</span>
+        <h1>@Model.StudentName</h1>
+        <p class="text-muted mb-0">@Model.Referentiel</p>
+    </div>
+</section>
+
+<div class="panel-card mb-4">
+    <form method="get" class="row g-3">
+        <div class="col-md-4">
+            <label class="form-label">Date</label>
+            <input type="date" name="date" value="@(Model.Date?.ToString("yyyy-MM-dd"))" class="form-control" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Libellé</label>
+            <input type="text" name="libelle" value="@Model.Libelle" class="form-control" placeholder="Maladie, retard, rendez-vous..." />
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button type="submit" class="btn btn-primary w-100">Rechercher</button>
+        </div>
+    </form>
+</div>
+
+<div class="panel-card">
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Libellé</th>
+                    <th>Durée</th>
+                    <th>État</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Absences.Count == 0)
+                {
+                    <tr><td colspan="4" class="text-center text-muted py-4">Aucune absence trouvée.</td></tr>
+                }
+                else
+                {
+                    @foreach (var absence in Model.Absences)
+                    {
+                        <tr>
+                            <td>@absence.Date.ToString("dd/MM/yyyy")</td>
+                            <td>@absence.Libelle</td>
+                            <td>@absence.DureeHeures h</td>
+                            <td>
+                                <span class="badge @(absence.Justifiee ? "text-bg-success" : "text-bg-danger")">
+                                    @(absence.Justifiee ? "Justifiée" : "Non justifiée")
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

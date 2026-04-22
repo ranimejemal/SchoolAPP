@@ -1,0 +1,43 @@
+@model IEnumerable<Compte>
+@{
+    ViewData["Title"] = "Comptes";
+}
+
+<section class="page-header page-header-inline">
+    <div><h1>Comptes</h1></div>
+    <a asp-action="Create" class="btn btn-primary">Nouveau compte</a>
+</section>
+
+<div class="panel-card">
+    <div class="table-responsive">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Login</th>
+                    <th>Nom affiché</th>
+                    <th>Rôle</th>
+                    <th>Étudiant lié</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Email</td>
+                        <td>@item.DisplayName</td>
+                        <td>@item.Role</td>
+                        <td>@(item.Etudiant?.NomComplet ?? "Aucun")</td>
+                        <td class="text-end">
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

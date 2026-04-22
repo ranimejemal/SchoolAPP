@@ -1,0 +1,47 @@
+@model Referentiel
+@{
+    var creation = Model.Id == 0;
+    ViewData["Title"] = creation ? "Créer un référentiel" : "Modifier un référentiel";
+}
+
+<section class="page-header page-header-inline">
+    <div><h1>@ViewData["Title"]</h1></div>
+    <a asp-action="Index" class="btn btn-outline-dark">Retour</a>
+</section>
+
+<div class="panel-card form-card">
+    <form asp-action="@(creation ? "Create" : "Edit")" method="post" class="row g-3">
+        @if (!creation)
+        {
+            <input asp-for="Id" type="hidden" />
+        }
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="col-md-4">
+            <label asp-for="Code" class="form-label"></label>
+            <input asp-for="Code" class="form-control" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+        <div class="col-md-8">
+            <label asp-for="Libelle" class="form-label"></label>
+            <input asp-for="Libelle" class="form-control" />
+            <span asp-validation-for="Libelle" class="text-danger"></span>
+        </div>
+        <div class="col-md-4">
+            <label asp-for="Niveau" class="form-label"></label>
+            <input asp-for="Niveau" class="form-control" />
+            <span asp-validation-for="Niveau" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+            <label asp-for="Description" class="form-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Enregistrer</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
