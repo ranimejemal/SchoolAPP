@@ -10,7 +10,7 @@
         "projectUniqueName": "C:\\Users\\MSI\\Desktop\\SchoolApp\\SchoolApp.csproj",
         "projectName": "SchoolApp",
         "projectPath": "C:\\Users\\MSI\\Desktop\\SchoolApp\\SchoolApp.csproj",
-        "packagesPath": "C:\\Users\\MSI\\Desktop\\SchoolApp\\artifacts\\.nuget\\packages",
+        "packagesPath": "C:\\Users\\MSI\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\MSI\\Desktop\\SchoolApp\\artifacts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
