@@ -1,26 +1,38 @@
 @model CompteFormViewModel
 @{
     var creation = string.IsNullOrWhiteSpace(Model.Id);
-    ViewData["Title"] = creation ? "Créer un compte" : "Modifier un compte";
+    ViewData["Title"] = creation ? "Creer un compte" : "Modifier un compte";
 }
 
-<section class="page-header page-header-inline">
-    <div><h1>@ViewData["Title"]</h1></div>
+<section class="page-header">
+    <div>
+        <span class="eyebrow">Administration</span>
+        <h1>@ViewData["Title"]</h1>
+        <p class="page-subtitle">Parametrez les informations de connexion et le role associe.</p>
+    </div>
     <a asp-action="Index" class="btn btn-outline-dark">Retour</a>
 </section>
 
 <div class="panel-card form-card">
+    <div class="form-card__header">
+        <div>
+            <h2>Informations du compte</h2>
+            <p class="muted-copy mb-0">Les utilisateurs peuvent etre lies a un etudiant pour l'espace personnel.</p>
+        </div>
+    </div>
+
     <form asp-action="@(creation ? "Create" : "Edit")" asp-route-id="@Model.Id" method="post" class="row g-3">
         <input asp-for="Id" type="hidden" />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <div class="col-md-6">
             <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control" placeholder="nom@schoolapp.local" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="col-md-6">
             <label asp-for="DisplayName" class="form-label"></label>
-            <input asp-for="DisplayName" class="form-control" />
+            <input asp-for="DisplayName" class="form-control" placeholder="Nom visible dans l'interface" />
             <span asp-validation-for="DisplayName" class="text-danger"></span>
         </div>
         <div class="col-md-4">
@@ -33,7 +45,7 @@
         </div>
         <div class="col-md-4">
             <label class="form-label">@(creation ? "Mot de passe" : "Nouveau mot de passe")</label>
-            <input asp-for="Password" class="form-control" />
+            <input asp-for="Password" class="form-control" placeholder="Laisser vide pour conserver l'ancien" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
         <div class="col-md-4" id="studentLinkBlock">

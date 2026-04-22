@@ -1,22 +1,33 @@
 @model IEnumerable<Referentiel>
 @{
-    ViewData["Title"] = "Référentiels";
+    ViewData["Title"] = "Referentiels";
 }
 
-<section class="page-header page-header-inline">
-    <div><h1>Référentiels</h1></div>
-    <a asp-action="Create" class="btn btn-primary">Nouveau référentiel</a>
+<section class="page-header">
+    <div>
+        <span class="eyebrow">Administration</span>
+        <h1>Gestion des referentiels</h1>
+        <p class="page-subtitle">Organisation des parcours, niveaux et rattachements academiques.</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">Nouveau referentiel</a>
 </section>
 
 <div class="panel-card">
+    <div class="table-card__header">
+        <div>
+            <h2>Liste des referentiels</h2>
+            <p class="muted-copy mb-0">@Model.Count() referentiel(s) definis.</p>
+        </div>
+    </div>
+
     <div class="table-responsive">
-        <table class="table align-middle">
+        <table class="table admin-table align-middle">
             <thead>
                 <tr>
                     <th>Code</th>
-                    <th>Libellé</th>
+                    <th>Libelle</th>
                     <th>Niveau</th>
-                    <th>Étudiants</th>
+                    <th>Etudiants</th>
                     <th>Professeurs</th>
                     <th></th>
                 </tr>
@@ -25,17 +36,22 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Code</td>
-                        <td>@item.Libelle</td>
+                        <td><span class="pill pill--neutral">@item.Code</span></td>
+                        <td>
+                            <span class="entity-main">@item.Libelle</span>
+                            <span class="entity-sub">@(string.IsNullOrWhiteSpace(item.Description) ? "Aucune description" : item.Description)</span>
+                        </td>
                         <td>@item.Niveau</td>
                         <td>@item.Etudiants.Count</td>
                         <td>@item.Professeurs.Count</td>
-                        <td class="text-end">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
-                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
-                            </form>
+                        <td>
+                            <div class="action-row">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 }

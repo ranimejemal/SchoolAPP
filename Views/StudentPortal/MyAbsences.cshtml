@@ -5,43 +5,60 @@
 
 <section class="page-header">
     <div>
-        <span class="eyebrow">Espace étudiant</span>
+        <span class="eyebrow">Espace etudiant</span>
         <h1>@Model.StudentName</h1>
-        <p class="text-muted mb-0">@Model.Referentiel</p>
+        <p class="page-subtitle">@Model.Referentiel</p>
     </div>
+    <span class="pill pill--neutral">@Model.Absences.Count absence(s)</span>
 </section>
 
 <div class="panel-card mb-4">
-    <form method="get" class="row g-3">
-        <div class="col-md-4">
+    <div class="form-card__header">
+        <div>
+            <h2>Recherche</h2>
+            <p class="muted-copy mb-0">Filtrez vos absences par date ou par motif.</p>
+        </div>
+    </div>
+
+    <form method="get" class="filter-grid">
+        <div>
             <label class="form-label">Date</label>
             <input type="date" name="date" value="@(Model.Date?.ToString("yyyy-MM-dd"))" class="form-control" />
         </div>
-        <div class="col-md-6">
-            <label class="form-label">Libellé</label>
+        <div>
+            <label class="form-label">Libelle</label>
             <input type="text" name="libelle" value="@Model.Libelle" class="form-control" placeholder="Maladie, retard, rendez-vous..." />
         </div>
-        <div class="col-md-2 d-flex align-items-end">
+        <div class="d-flex align-items-end">
             <button type="submit" class="btn btn-primary w-100">Rechercher</button>
         </div>
     </form>
 </div>
 
 <div class="panel-card">
+    <div class="table-card__header">
+        <div>
+            <h2>Historique des absences</h2>
+            <p class="muted-copy mb-0">Visualisez vos absences et leur etat de justification.</p>
+        </div>
+    </div>
+
     <div class="table-responsive">
-        <table class="table align-middle">
+        <table class="table admin-table align-middle">
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Libellé</th>
-                    <th>Durée</th>
-                    <th>État</th>
+                    <th>Libelle</th>
+                    <th>Duree</th>
+                    <th>Etat</th>
                 </tr>
             </thead>
             <tbody>
                 @if (Model.Absences.Count == 0)
                 {
-                    <tr><td colspan="4" class="text-center text-muted py-4">Aucune absence trouvée.</td></tr>
+                    <tr>
+                        <td colspan="4" class="text-center muted-copy py-4">Aucune absence trouvee.</td>
+                    </tr>
                 }
                 else
                 {
@@ -52,8 +69,8 @@
                             <td>@absence.Libelle</td>
                             <td>@absence.DureeHeures h</td>
                             <td>
-                                <span class="badge @(absence.Justifiee ? "text-bg-success" : "text-bg-danger")">
-                                    @(absence.Justifiee ? "Justifiée" : "Non justifiée")
+                                <span class="pill @(absence.Justifiee ? "pill--success" : "pill--danger")">
+                                    @(absence.Justifiee ? "Justifiee" : "Non justifiee")
                                 </span>
                             </td>
                         </tr>

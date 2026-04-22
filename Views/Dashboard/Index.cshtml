@@ -6,70 +6,110 @@
 <section class="page-header">
     <div>
         <span class="eyebrow">Administration</span>
-        <h1>Statistiques de l’application</h1>
+        <h1>Tableau de bord</h1>
+        <p class="page-subtitle">Vue d'ensemble des effectifs, des absences et des zones d'action prioritaires.</p>
+    </div>
+    <div class="d-flex gap-2 flex-wrap">
+        <a asp-controller="Etudiants" asp-action="Index" class="btn btn-outline-dark">Gerer les etudiants</a>
+        <a asp-controller="Absences" asp-action="Index" class="btn btn-primary">Ouvrir les absences</a>
     </div>
 </section>
 
-<div class="row g-4 mb-4">
-    <div class="col-md-6 col-xl-3"><div class="stat-card"><span>Étudiants</span><strong>@Model.EtudiantsCount</strong></div></div>
-    <div class="col-md-6 col-xl-3"><div class="stat-card"><span>Professeurs</span><strong>@Model.ProfesseursCount</strong></div></div>
-    <div class="col-md-6 col-xl-3"><div class="stat-card"><span>Référentiels</span><strong>@Model.ReferentielsCount</strong></div></div>
-    <div class="col-md-6 col-xl-3"><div class="stat-card"><span>Absences</span><strong>@Model.AbsencesCount</strong></div></div>
+<div class="stat-grid">
+    <div class="stat-card"><span>Etudiants</span><strong>@Model.EtudiantsCount</strong></div>
+    <div class="stat-card"><span>Professeurs</span><strong>@Model.ProfesseursCount</strong></div>
+    <div class="stat-card"><span>Referentiels</span><strong>@Model.ReferentielsCount</strong></div>
+    <div class="stat-card"><span>Absences</span><strong>@Model.AbsencesCount</strong></div>
 </div>
 
-<div class="row g-4">
-    <div class="col-lg-5">
-        <div class="panel-card h-100">
-            <h2 class="h4">Absences par référentiel</h2>
-            <div class="mt-4 d-grid gap-3">
-                @foreach (var item in Model.AbsencesByReferentiel)
-                {
-                    <div>
-                        <div class="d-flex justify-content-between">
-                            <span>@item.Label</span>
-                            <strong>@item.Value</strong>
-                        </div>
-                        <div class="progress mt-2" role="progressbar">
-                            <div class="progress-bar" style="width:@(Model.AbsencesCount == 0 ? 0 : (item.Value * 100 / Model.AbsencesCount))%"></div>
-                        </div>
-                    </div>
-                }
+<div class="content-grid">
+    <div class="panel-card">
+        <div class="panel-card__header">
+            <div>
+                <h2>Absences par referentiel</h2>
+                <p class="muted-copy mb-0">Lecture rapide de la repartition des absences.</p>
             </div>
-            <div class="text-muted mt-4">Taux d’absences justifiées: <strong>@Model.JustifiedRate %</strong></div>
+            <span class="pill pill--success">@Model.JustifiedRate % justifiees</span>
+        </div>
+
+        <div class="dashboard-list">
+            @foreach (var item in Model.AbsencesByReferentiel)
+            {
+                <div class="dashboard-list__item">
+                    <div class="d-flex justify-content-between">
+                        <span>@item.Label</span>
+                        <strong>@item.Value</strong>
+                    </div>
+                    <div class="progress" role="progressbar">
+                        <div class="progress-bar" style="width:@(Model.AbsencesCount == 0 ? 0 : (item.Value * 100 / Model.AbsencesCount))%"></div>
+                    </div>
+                </div>
+            }
         </div>
     </div>
-    <div class="col-lg-7">
-        <div class="panel-card h-100">
-            <h2 class="h4">Absences récentes</h2>
-            <div class="table-responsive mt-3">
-                <table class="table align-middle">
-                    <thead>
-                        <tr>
-                            <th>Étudiant</th>
-                            <th>Référentiel</th>
-                            <th>Date</th>
-                            <th>Motif</th>
-                            <th>État</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.RecentAbsences)
-                        {
-                            <tr>
-                                <td>@item.Etudiant</td>
-                                <td>@item.Referentiel</td>
-                                <td>@item.Date.ToString("dd/MM/yyyy")</td>
-                                <td>@item.Libelle</td>
-                                <td>
-                                    <span class="badge @(item.Justifiee ? "text-bg-success" : "text-bg-warning")">
-                                        @(item.Justifiee ? "Justifiée" : "Non justifiée")
-                                    </span>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+
+    <div class="panel-card">
+        <div class="panel-card__header">
+            <div>
+                <h2>Absences recentes</h2>
+                <p class="muted-copy mb-0">Dernieres actions remontees dans le systeme.</p>
             </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table admin-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Etudiant</th>
+                        <th>Referentiel</th>
+                        <th>Date</th>
+                        <th>Motif</th>
+                        <th>Etat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.RecentAbsences)
+                    {
+                        <tr>
+                            <td>
+                                <span class="entity-main">@item.Etudiant</span>
+                            </td>
+                            <td>@item.Referentiel</td>
+                            <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                            <td>@item.Libelle</td>
+                            <td>
+                                <span class="pill @(item.Justifiee ? "pill--success" : "pill--warning")">
+                                    @(item.Justifiee ? "Justifiee" : "Non justifiee")
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+<section class="panel-card mt-4">
+    <div class="panel-card__header">
+        <div>
+            <h2>Acces rapides</h2>
+            <p class="muted-copy mb-0">Raccourcis de navigation pour les operations frequentes.</p>
+        </div>
+    </div>
+
+    <div class="quick-grid">
+        <a asp-controller="Comptes" asp-action="Create" class="quick-link">
+            <strong>Creer un compte</strong>
+            <span>Ajouter un nouvel acces administrateur ou utilisateur.</span>
+        </a>
+        <a asp-controller="Etudiants" asp-action="Create" class="quick-link">
+            <strong>Ajouter un etudiant</strong>
+            <span>Enregistrer un nouveau profil etudiant et son referentiel.</span>
+        </a>
+        <a asp-controller="Absences" asp-action="Create" class="quick-link">
+            <strong>Declarer une absence</strong>
+            <span>Creer rapidement une absence et l'associer a un etudiant.</span>
+        </a>
+    </div>
+</section>

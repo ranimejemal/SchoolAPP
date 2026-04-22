@@ -128,7 +128,6 @@ C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\rjimswa.dswa.cache.js
 C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
 C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
 C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\scopedcss\bundle\SchoolApp.styles.css
-C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\compressed\66ge2ivv9s-{0}-dtomp3v93b-dtomp3v93b.gz
 C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\compressed\4zehdbl3uv-{0}-61n19gt1b8-61n19gt1b8.gz
 C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\compressed\snzxafazuf-{0}-d1ws2ido5z-d1ws2ido5z.gz
 C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\compressed\zb5fcoh2mh-{0}-bqjiyaj88i-bqjiyaj88i.gz
@@ -225,3 +224,4 @@ C:\Users\MSI\Desktop\SchoolApp\artifacts\bin\Debug\net10.0\runtimes\win-arm64\na
 C:\Users\MSI\Desktop\SchoolApp\artifacts\bin\Debug\net10.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\MSI\Desktop\SchoolApp\artifacts\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\SchoolApp.sourcelink.json
+C:\Users\MSI\Desktop\SchoolApp\artifacts\obj\Debug\net10.0\compressed\66ge2ivv9s-{0}-h1edp25m4x-h1edp25m4x.gz

@@ -2,67 +2,212 @@
     ViewData["Title"] = "Accueil";
 }
 
-<section class="hero-panel mb-4">
-    <div class="row g-4 align-items-center">
-        <div class="col-lg-7">
-            <span class="eyebrow">Mini projet ASP.NET Core</span>
-            <h1 class="display-5 fw-semibold mt-3">Gestion d’école avec identité, CRUD, statistiques et espace étudiant</h1>
-            <p class="lead text-muted mt-3">
-                Application web reconstruite autour des besoins du sujet:
-                authentification, rôles <strong>Admin/User</strong>, gestion complète des tables,
-                consultation des absences et microservices simples via API JSON.
-            </p>
-            <div class="d-flex flex-wrap gap-2 mt-4">
-                <a asp-controller="Auth" asp-action="Login" class="btn btn-primary btn-lg">Se connecter</a>
-                <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-dark btn-lg">Voir le dashboard</a>
-            </div>
-        </div>
-        <div class="col-lg-5">
-            <div class="glass-card">
-                <h2 class="h4">Comptes de démonstration</h2>
-                <div class="credential-block mt-3">
-                    <strong>Admin</strong>
-                    <div><code>admin@schoolapp.local</code></div>
-                    <div><code>Admin123</code></div>
-                </div>
-                <div class="credential-block mt-3">
-                    <strong>User</strong>
-                    <div><code>sarra@schoolapp.local</code></div>
-                    <div><code>User123</code></div>
-                </div>
-                <div class="credential-block mt-3">
-                    <strong>User</strong>
-                    <div><code>omar@schoolapp.local</code></div>
-                    <div><code>User123</code></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<div class="creative-home">
+    <section class="creative-hero hero-panel mb-4">
+        <div class="row g-4 align-items-center">
+            <div class="col-xl-7">
+                <span class="eyebrow">SchoolApp platform</span>
+                <h1 class="display-4 mt-3">Empowering schools through smart management.</h1>
+                <p class="hero-lead mt-3">
+                    SchoolApp centralise l'authentification, le suivi des absences, les comptes utilisateurs,
+                    les referentiels et les statistiques administratives dans une experience plus premium,
+                    plus fluide et plus claire.
+                </p>
 
-<section class="row g-4">
-    <div class="col-md-6 col-xl-3">
-        <div class="feature-card">
-            <h3>Authentification</h3>
-            <p>Connexion sécurisée avec ASP.NET Core Identity et rôles administrateur / utilisateur.</p>
+                <div class="d-flex flex-wrap gap-2 mt-4">
+                    <a asp-controller="Auth" asp-action="Login" class="btn btn-primary btn-lg">Acceder a la plateforme</a>
+                    <a asp-controller="Dashboard" asp-action="Index" class="btn btn-outline-dark btn-lg">Voir le dashboard</a>
+                </div>
+
+                <div class="creative-tag-row mt-4">
+                    <span class="creative-tag">Identity securise</span>
+                    <span class="creative-tag">Absences en temps reel</span>
+                    <span class="creative-tag">Dashboard admin</span>
+                </div>
+            </div>
+
+            <div class="col-xl-5">
+                <div class="creative-visual-card">
+                    <div class="creative-orb creative-orb--pink"></div>
+                    <div class="creative-orb creative-orb--blue"></div>
+
+                    <div class="creative-profile">
+                        <div class="creative-profile__badge">SA</div>
+                        <div>
+                            <span>School admin workspace</span>
+                            <strong>Interface moderne et claire</strong>
+                        </div>
+                    </div>
+
+                    <div class="creative-visual-grid">
+                        <div class="creative-mini-card">
+                            <span>Connexion</span>
+                            <strong>Admin + User</strong>
+                        </div>
+                        <div class="creative-mini-card">
+                            <span>Analytics</span>
+                            <strong>Vue globale</strong>
+                        </div>
+                        <div class="creative-mini-card creative-mini-card--accent">
+                            <span>Statut</span>
+                            <strong>System ready</strong>
+                        </div>
+                    </div>
+
+                    <div class="creative-floating-pill creative-floating-pill--top">Live dashboards</div>
+                    <div class="creative-floating-pill creative-floating-pill--bottom">Blue + pink theme</div>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="feature-card">
-            <h3>CRUD complet</h3>
-            <p>Gestion des comptes, étudiants, professeurs, référentiels et absences.</p>
+    </section>
+
+    <section class="creative-metrics mb-4">
+        <div class="creative-metric">
+            <span>Gestion</span>
+            <strong>2000+</strong>
+            <small>actions suivies</small>
         </div>
-    </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="feature-card">
-            <h3>Statistiques</h3>
-            <p>Vue d’ensemble de l’application avec indicateurs et absences récentes.</p>
+        <div class="creative-metric">
+            <span>Utilisateurs</span>
+            <strong>10+</strong>
+            <small>roles et comptes</small>
         </div>
-    </div>
-    <div class="col-md-6 col-xl-3">
-        <div class="feature-card">
-            <h3>Microservices simples</h3>
-            <p>Endpoints JSON pour consulter les statistiques et les absences de l’utilisateur connecté.</p>
+        <div class="creative-metric">
+            <span>Modules</span>
+            <strong>800+</strong>
+            <small>operations digitales</small>
         </div>
-    </div>
-</section>
+        <div class="creative-metric">
+            <span>Performance</span>
+            <strong>24/7</strong>
+            <small>acces et pilotage</small>
+        </div>
+    </section>
+
+    <section class="creative-showcase panel-card mb-4">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-5">
+                <span class="eyebrow eyebrow--dark">SchoolApp vision</span>
+                <h2 class="mt-3">Turning school operations into a cleaner digital experience.</h2>
+                <p class="muted-copy mt-3">
+                    Du pilotage administratif jusqu'au portail etudiant, l'application rassemble les parcours
+                    importants dans une seule interface avec un style plus fort, plus editorial et plus memorisable.
+                </p>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="creative-showcase-grid">
+                    <article class="creative-photo-card creative-photo-card--wide">
+                        <div class="creative-photo-card__label">A creative school dashboard</div>
+                    </article>
+                    <article class="creative-photo-card creative-photo-card--tall">
+                        <div class="creative-photo-card__label creative-photo-card__label--pink">Absence insights</div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="creative-services info-card mb-4">
+        <div class="row g-4 align-items-center">
+            <div class="col-lg-6">
+                <div class="creative-section-head">
+                    <span class="eyebrow">Our services</span>
+                    <h2 class="mt-3">Des modules utiles pour l'administration et le suivi etudiant.</h2>
+                </div>
+
+                <div class="creative-service-list mt-4">
+                    <div class="creative-service-item">
+                        <span>01</span>
+                        <strong>UI claire pour les gestionnaires</strong>
+                        <small>navigation plus simple, cartes plus lisibles, informations mieux hierarchisees</small>
+                    </div>
+                    <div class="creative-service-item">
+                        <span>02</span>
+                        <strong>Suivi des absences</strong>
+                        <small>recherche, filtrage et consultation rapide depuis les interfaces metier</small>
+                    </div>
+                    <div class="creative-service-item">
+                        <span>03</span>
+                        <strong>Gestion des comptes</strong>
+                        <small>administrateurs et utilisateurs avec authentification centralisee</small>
+                    </div>
+                    <div class="creative-service-item">
+                        <span>04</span>
+                        <strong>Statistiques et API</strong>
+                        <small>endpoints JSON et cartes de synthese pour une vision immediate</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="creative-side-stack">
+                    <div class="creative-glass-card">
+                        <span class="creative-glass-card__eyebrow">Quick start</span>
+                        <h3>Comptes de demonstration</h3>
+                        <div class="credential-list mt-3">
+                            <div class="credential-card">
+                                <span>Administrateur</span>
+                                <strong>admin@schoolapp.local</strong>
+                                <code>Admin123</code>
+                            </div>
+                            <div class="credential-card">
+                                <span>Utilisateur</span>
+                                <strong>sarra@schoolapp.local</strong>
+                                <code>User123</code>
+                            </div>
+                            <div class="credential-card">
+                                <span>Utilisateur</span>
+                                <strong>omar@schoolapp.local</strong>
+                                <code>User123</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="creative-callout">
+                        <span>Need access?</span>
+                        <strong>Connectez-vous pour explorer le dashboard et les modules de gestion.</strong>
+                        <a asp-controller="Auth" asp-action="Login" class="btn btn-primary mt-3">Se connecter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="creative-values mb-4">
+        <div class="creative-values__line"></div>
+        <div class="creative-values__items">
+            <span>Innovate</span>
+            <span>Inspire</span>
+            <span>Create</span>
+        </div>
+        <div class="creative-values__line"></div>
+    </section>
+
+    <section class="row g-4">
+        <div class="col-md-6 col-xl-3">
+            <div class="feature-card creative-feature-card">
+                <h3>Authentification securisee</h3>
+                <p>Connexion par role avec ASP.NET Core Identity pour separer l'espace admin et utilisateur.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="feature-card creative-feature-card">
+                <h3>Administration centralisee</h3>
+                <p>Gestion des etudiants, professeurs, absences, comptes et referentiels depuis un seul outil.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="feature-card creative-feature-card">
+                <h3>Consultation etudiante</h3>
+                <p>Un portail simple pour relire ses absences et filtrer les informations importantes.</p>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="feature-card creative-feature-card">
+                <h3>Statistiques rapides</h3>
+                <p>Des indicateurs utiles pour lire l'activite globale de l'ecole sans perdre de temps.</p>
+            </div>
+        </div>
+    </section>
+</div>

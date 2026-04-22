@@ -1,21 +1,32 @@
 @model IEnumerable<Etudiant>
 @{
-    ViewData["Title"] = "Étudiants";
+    ViewData["Title"] = "Etudiants";
 }
 
-<section class="page-header page-header-inline">
-    <div><h1>Étudiants</h1></div>
-    <a asp-action="Create" class="btn btn-primary">Nouvel étudiant</a>
+<section class="page-header">
+    <div>
+        <span class="eyebrow">Administration</span>
+        <h1>Gestion des etudiants</h1>
+        <p class="page-subtitle">Suivi des profils etudiants, referentiels et comptes lies.</p>
+    </div>
+    <a asp-action="Create" class="btn btn-primary">Nouvel etudiant</a>
 </section>
 
 <div class="panel-card">
+    <div class="table-card__header">
+        <div>
+            <h2>Liste des etudiants</h2>
+            <p class="muted-copy mb-0">@Model.Count() etudiant(s) enregistres.</p>
+        </div>
+    </div>
+
     <div class="table-responsive">
-        <table class="table align-middle">
+        <table class="table admin-table align-middle">
             <thead>
                 <tr>
                     <th>Matricule</th>
-                    <th>Nom</th>
-                    <th>Référentiel</th>
+                    <th>Etudiant</th>
+                    <th>Referentiel</th>
                     <th>Absences</th>
                     <th>Compte</th>
                     <th></th>
@@ -25,17 +36,22 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Matricule</td>
-                        <td>@item.NomComplet</td>
+                        <td><span class="pill pill--neutral">@item.Matricule</span></td>
+                        <td>
+                            <span class="entity-main">@item.NomComplet</span>
+                            <span class="entity-sub">@item.Email</span>
+                        </td>
                         <td>@item.Referentiel?.Libelle</td>
                         <td>@item.Absences.Count</td>
                         <td>@(item.Compte?.Email ?? "Aucun")</td>
-                        <td class="text-end">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
-                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
-                            </form>
+                        <td>
+                            <div class="action-row">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 }

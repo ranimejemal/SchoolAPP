@@ -3,22 +3,33 @@
     ViewData["Title"] = "Absences";
 }
 
-<section class="page-header page-header-inline">
-    <div><h1>Absences</h1></div>
+<section class="page-header">
+    <div>
+        <span class="eyebrow">Administration</span>
+        <h1>Gestion des absences</h1>
+        <p class="page-subtitle">Suivi des dates, motifs, durees et etats de justification.</p>
+    </div>
     <a asp-action="Create" class="btn btn-primary">Nouvelle absence</a>
 </section>
 
 <div class="panel-card">
+    <div class="table-card__header">
+        <div>
+            <h2>Historique des absences</h2>
+            <p class="muted-copy mb-0">@Model.Count() absence(s) referencees.</p>
+        </div>
+    </div>
+
     <div class="table-responsive">
-        <table class="table align-middle">
+        <table class="table admin-table align-middle">
             <thead>
                 <tr>
-                    <th>Étudiant</th>
-                    <th>Référentiel</th>
+                    <th>Etudiant</th>
+                    <th>Referentiel</th>
                     <th>Date</th>
-                    <th>Libellé</th>
-                    <th>Durée</th>
-                    <th>État</th>
+                    <th>Libelle</th>
+                    <th>Duree</th>
+                    <th>Etat</th>
                     <th></th>
                 </tr>
             </thead>
@@ -26,22 +37,26 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.Etudiant?.NomComplet</td>
+                        <td>
+                            <span class="entity-main">@item.Etudiant?.NomComplet</span>
+                        </td>
                         <td>@item.Etudiant?.Referentiel?.Libelle</td>
                         <td>@item.Date.ToString("dd/MM/yyyy")</td>
                         <td>@item.Libelle</td>
                         <td>@item.DureeHeures h</td>
                         <td>
-                            <span class="badge @(item.Justifiee ? "text-bg-success" : "text-bg-warning")">
-                                @(item.Justifiee ? "Justifiée" : "Non justifiée")
+                            <span class="pill @(item.Justifiee ? "pill--success" : "pill--warning")">
+                                @(item.Justifiee ? "Justifiee" : "Non justifiee")
                             </span>
                         </td>
-                        <td class="text-end">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
-                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
-                            </form>
+                        <td>
+                            <div class="action-row">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 }

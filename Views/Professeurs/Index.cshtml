@@ -3,21 +3,31 @@
     ViewData["Title"] = "Professeurs";
 }
 
-<section class="page-header page-header-inline">
-    <div><h1>Professeurs</h1></div>
+<section class="page-header">
+    <div>
+        <span class="eyebrow">Administration</span>
+        <h1>Gestion des professeurs</h1>
+        <p class="page-subtitle">Organisation des enseignants, specialites, grades et referentiels principaux.</p>
+    </div>
     <a asp-action="Create" class="btn btn-primary">Nouveau professeur</a>
 </section>
 
 <div class="panel-card">
+    <div class="table-card__header">
+        <div>
+            <h2>Liste des professeurs</h2>
+            <p class="muted-copy mb-0">@Model.Count() professeur(s) disponibles.</p>
+        </div>
+    </div>
+
     <div class="table-responsive">
-        <table class="table align-middle">
+        <table class="table admin-table align-middle">
             <thead>
                 <tr>
-                    <th>Nom</th>
-                    <th>Email</th>
-                    <th>Spécialité</th>
+                    <th>Professeur</th>
+                    <th>Specialite</th>
                     <th>Grade</th>
-                    <th>Référentiel</th>
+                    <th>Referentiel</th>
                     <th></th>
                 </tr>
             </thead>
@@ -25,17 +35,21 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.NomComplet</td>
-                        <td>@item.Email</td>
+                        <td>
+                            <span class="entity-main">@item.NomComplet</span>
+                            <span class="entity-sub">@item.Email</span>
+                        </td>
                         <td>@item.Specialite</td>
-                        <td>@item.Grade</td>
-                        <td>@item.ReferentielPrincipal?.Libelle</td>
-                        <td class="text-end">
-                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
-                            <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
-                                @Html.AntiForgeryToken()
-                                <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
-                            </form>
+                        <td><span class="pill pill--neutral">@item.Grade</span></td>
+                        <td>@(item.ReferentielPrincipal?.Libelle ?? "Non defini")</td>
+                        <td>
+                            <div class="action-row">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-dark">Modifier</a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Supprimer</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 }

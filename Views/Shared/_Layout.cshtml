@@ -12,14 +12,22 @@
 <body>
     <div class="app-shell">
         <header class="site-header">
-            <nav class="navbar navbar-expand-lg navbar-dark">
-                <div class="container">
-                    <a class="navbar-brand fw-semibold" asp-controller="Home" asp-action="Index">SchoolApp</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="brand-mark" asp-controller="Home" asp-action="Index">
+                        <span class="brand-mark__badge">SA</span>
+                        <span>
+                            <strong>SchoolApp</strong>
+                            <small>Administration academique</small>
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
                     <div class="collapse navbar-collapse" id="mainNav">
-                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Home" asp-action="Index">Accueil</a>
                             </li>
@@ -37,28 +45,39 @@
                                 <li class="nav-item"><a class="nav-link" asp-controller="StudentPortal" asp-action="MyAbsences">Mes absences</a></li>
                             }
                         </ul>
-                        <div class="d-flex align-items-center gap-2">
+
+                        <div class="header-actions">
                             @if (User.Identity?.IsAuthenticated == true)
                             {
-                                <span class="user-badge">@User.Identity.Name</span>
+                                <div class="identity-chip">
+                                    <span class="identity-chip__label">Connecte</span>
+                                    <strong>@User.Identity.Name</strong>
+                                </div>
                                 <form asp-controller="Auth" asp-action="Logout" method="post" class="m-0">
                                     @Html.AntiForgeryToken()
-                                    <button type="submit" class="btn btn-sm btn-outline-light">Déconnexion</button>
+                                    <button type="submit" class="btn btn-outline-light btn-soft">Deconnexion</button>
                                 </form>
                             }
                             else
                             {
-                                <a class="btn btn-sm btn-outline-light" asp-controller="Auth" asp-action="Login">Connexion</a>
+                                <a class="btn btn-outline-light btn-soft" asp-controller="Auth" asp-action="Login">Connexion</a>
                             }
                         </div>
                     </div>
-                </div>
-            </nav>
+                </nav>
+            </div>
         </header>
 
-        <main class="container page-content">
+        <main class="container app-main">
             @RenderBody()
         </main>
+
+        <footer class="site-footer">
+            <div class="container site-footer__content">
+                <span>SchoolApp</span>
+                <span>Gestion des comptes, absences et referentiels.</span>
+            </div>
+        </footer>
     </div>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
