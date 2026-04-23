@@ -9,7 +9,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
-builder.WebHost.UseUrls("http://localhost:5000");
+
+var urls = builder.Configuration["urls"];
+if (!string.IsNullOrWhiteSpace(urls))
+{
+    builder.WebHost.UseUrls(urls);
+}
+else
+{
+    builder.WebHost.UseUrls("http://localhost:5000");
+}
 
 builder.Services.AddControllersWithViews();
 
